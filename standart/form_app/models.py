@@ -3,13 +3,17 @@ from django.db import models
 
 class Requisites(models.Model):
     TYPE_PAID_CHOICES = [
-        ('card', 'карта'),
-        ('payment_account', 'платёжный счёт'),
+        # ('card', 'карта'),
+        # ('payment_account', 'платёжный счёт'),
+        ('карта', 'карта'),
+        ('платёжный счёт', 'платёжный счёт'),
     ]
 
     TYPE_CARD_ACCOUNT_CHOICES = [
-        ('type1', 'тип1'),
-        ('type2', 'тип2'),
+        # ('type1', 'тип1'),
+        # ('type2', 'тип2'),
+        ('тип1', 'тип1'),
+        ('тип2', 'тип2'),
     ]
 
     type_paid = models.CharField(
@@ -40,9 +44,12 @@ class Requisites(models.Model):
 
 class Application(models.Model):
     STATUS_CHOICES = [
-        ('awaiting_payment', 'Ожидает оплаты'),
-        ('paid', 'Оплачена'),
-        ('canceled', 'Отменена'),
+        # ('awaiting_payment', 'Ожидает оплаты'),
+        # ('paid', 'Оплачена'),
+        # ('canceled', 'Отменена'),
+        ('Ожидает оплаты', 'Ожидает оплаты'),
+        ('Оплачена', 'Оплачена'),
+        ('Отменена', 'Отменена'),
     ]
 
     summ = models.DecimalField(verbose_name='сумма', max_digits=10, decimal_places=2)
