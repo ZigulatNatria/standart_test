@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'base.html' %}
+    <body>
+        {% block content %}
+            <div class="container">
+                <div class="row" style="justify-content: center; font-size: larger; font-weight: bold">
+                    Заявки
+                </div>
+                <table class="table" style="margin-bottom: 5rem">
+                    <thead>
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Сумма</th>
+                          <th scope="col">Реквизиты</th>
+                          <th scope="col">Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in applications %}
+                            <tr>
+                                <td>{{ app.id }}</td>
+                                <td>{{ app.summ }}</td>
+                                <td>{{ app.requisites }}
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#{{ app.id }}" style="background-color: #B0C4DE">
+                                      ?
+                                    </button>
+                                </td>
+                                <td>{{ app.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% for app in applications %}
+        <div class="modal fade" id="{{ app.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Реквизиты</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              </div>
+              <div class="modal-body">
+                 <p>{{ app.requisites }}</p>
+                 <p>{{ app.requisites.get_type_paid_display }}</p>
+                 <p>{{ app.requisites.get_type_card_payment_account_display }}</p>
+                 <p>{{ app.requisites.phone_number }}</p>
+                 <p>{{ app.requisites.limit }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endblock content %}
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'base.html' %}
+    <body>
+        {% block content %}
+            <div class="container">
+                <div class="row" style="justify-content: center; font-size: larger; font-weight: bold">
+                    Реквизиты
+                </div>
+                <form class="d-flex" role="search" action="{% url 'search' %}">
+                   <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск" name="search">
+                   <button class="btn" type="submit" style="margin-right: 5px; background-color: #B0C4DE">
+                       Поиск
+                   </button>
+                </form>
+                <table class="table" style="margin-bottom: 5rem">
+                    <thead>
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Тип платежа</th>
+                          <th scope="col">Тип карты/счета</th>
+                          <th scope="col">ФИО</th>
+                          <th scope="col">Телефон</th>
+                          <th scope="col">Лимит</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for req in requisites %}
+                            <tr>
+                                <td>{{ req.id }}</td>
+                                <td>{{ req.get_type_paid_display }}</td>
+                                <td>{{ req.get_type_card_payment_account_display }}</td>
+                                <td>{{ req.surname }} {{ req.name }} {{ req.patronymic }}</td>
+                                <td>{{ req.phone_number }}</td>
+                                <td>{{ req.limit }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endblock content %}
+    </body>
+</html>
