@@ -35,3 +35,16 @@ def search(request):
         requisites = Requisites.objects.all()
     context = {'requisites': requisites,}
     return render(request, 'search.html', context)
+
+
+def sort(request):
+    sort_query = request.GET.get('sort', '') # передаётся имя ввода (строка поиска)
+    print(sort_query)
+
+    if sort_query:
+        requisites = Requisites.objects.order_by(sort_query)
+    else:
+        # requisites = Requisites.objects.all()
+        requisites = None
+    context = {'requisites': requisites,}
+    return render(request, 'sort.html', context)

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'form_app',
+    'django_seed',
+    # 'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +78,8 @@ WSGI_APPLICATION = 'standart.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
-DATABASES = base_psql      #база postgres
-# DATABASES = base_sqlite    #база squlite3
+# DATABASES = base_psql      #база postgres
+DATABASES = base_sqlite    #база squlite3
 
 
 # Password validation

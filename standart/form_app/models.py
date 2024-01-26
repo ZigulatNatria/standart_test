@@ -3,15 +3,11 @@ from django.db import models
 
 class Requisites(models.Model):
     TYPE_PAID_CHOICES = [
-        # ('card', 'карта'),
-        # ('payment_account', 'платёжный счёт'),
         ('карта', 'карта'),
         ('платёжный счёт', 'платёжный счёт'),
     ]
 
     TYPE_CARD_ACCOUNT_CHOICES = [
-        # ('type1', 'тип1'),
-        # ('type2', 'тип2'),
         ('тип1', 'тип1'),
         ('тип2', 'тип2'),
     ]
@@ -20,19 +16,19 @@ class Requisites(models.Model):
         verbose_name='тип платежа',
         choices=TYPE_PAID_CHOICES,
         max_length=15,
-        default='card'
+        # default='card'     #Seeder при дефолтном значении всегда ставит его (((((
     )
     type_card_payment_account = models.CharField(
         verbose_name='тип карты/счета',
         choices=TYPE_CARD_ACCOUNT_CHOICES,
         max_length=5,
-        default='type1'
+        # default='type1'    #Seeder при дефолтном значении всегда ставит его (((((
     )
-    surname = models.CharField(verbose_name='фамилия', max_length=128)
-    name = models.CharField(verbose_name='имя', max_length=128)
-    patronymic = models.CharField(verbose_name='отчество', max_length=128, null=True, blank=True)
+    surname = models.CharField(verbose_name='фамилия', max_length=10)
+    name = models.CharField(verbose_name='имя', max_length=10)
+    patronymic = models.CharField(verbose_name='отчество', max_length=10, null=True, blank=True)
     phone_number = models.BigIntegerField(verbose_name='номер телефона')
-    limit = models.IntegerField(verbose_name='лимит', default=10000)
+    limit = models.IntegerField(verbose_name='лимит')
 
     class Meta:
         verbose_name = 'реквизит'
@@ -44,21 +40,19 @@ class Requisites(models.Model):
 
 class Application(models.Model):
     STATUS_CHOICES = [
-        # ('awaiting_payment', 'Ожидает оплаты'),
-        # ('paid', 'Оплачена'),
-        # ('canceled', 'Отменена'),
         ('Ожидает оплаты', 'Ожидает оплаты'),
         ('Оплачена', 'Оплачена'),
         ('Отменена', 'Отменена'),
     ]
 
-    summ = models.DecimalField(verbose_name='сумма', max_digits=10, decimal_places=2)
+    # summ = models.DecimalField(verbose_name='сумма', max_digits=10, decimal_places=2)
+    summ = models.IntegerField(verbose_name='сумма')   # для суммы DecimalField больше подходит, но Seeder не корректно с ним работает
     requisites = models.ForeignKey(Requisites, verbose_name='реквизиты', on_delete=models.CASCADE)
     status = models.CharField(
         verbose_name='статус',
         choices=STATUS_CHOICES,
         max_length=16,
-        default='awaiting_payment'
+        default='awaiting_payment'  #Seeder при дефолтном значении всегда ставит его (((((
     )
 
     class Meta:

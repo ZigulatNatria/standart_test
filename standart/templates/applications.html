@@ -13,6 +13,7 @@
                           <th scope="col">ID</th>
                           <th scope="col">Сумма</th>
                           <th scope="col">Реквизиты</th>
+                          <th scope="col">Реквизиты (детали)</th>
                           <th scope="col">Статус</th>
                         </tr>
                     </thead>
@@ -21,7 +22,8 @@
                             <tr>
                                 <td>{{ app.id }}</td>
                                 <td>{{ app.summ }}</td>
-                                <td>{{ app.requisites }}
+                                <td>{{ app.requisites }}</td>
+                                <td>
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#{{ app.id }}" style="background-color: #B0C4DE">
                                       ?
                                     </button>
