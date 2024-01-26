@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Application, Requisites
 from django.db.models import Q
+from .seeder import my_seed
 
 
 class ApplicationsView(ListView):
@@ -48,3 +49,9 @@ def sort(request):
         requisites = None
     context = {'requisites': requisites,}
     return render(request, 'sort.html', context)
+
+
+def start_seed(request):
+    my_seed()
+    return render(request, 'seed_response.html')
+

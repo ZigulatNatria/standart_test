@@ -45,8 +45,7 @@ class Application(models.Model):
         ('Отменена', 'Отменена'),
     ]
 
-    # summ = models.DecimalField(verbose_name='сумма', max_digits=10, decimal_places=2)
-    summ = models.IntegerField(verbose_name='сумма')   # для суммы DecimalField больше подходит, но Seeder не корректно с ним работает
+    summ = models.DecimalField(verbose_name='сумма', max_digits=10, decimal_places=2)
     requisites = models.ForeignKey(Requisites, verbose_name='реквизиты', on_delete=models.CASCADE)
     status = models.CharField(
         verbose_name='статус',
