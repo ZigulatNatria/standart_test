@@ -3,6 +3,9 @@ from django.views.generic import ListView
 from .models import Application, Requisites
 from django.db.models import Q
 from .seeder import my_seed
+from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView
+from .forms import BaseRegisterForm
 
 
 class ApplicationsView(ListView):
@@ -45,8 +48,7 @@ def sort(request):
     if sort_query:
         requisites = Requisites.objects.order_by(sort_query)
     else:
-        # requisites = Requisites.objects.all()
-        requisites = None
+        requisites = Requisites.objects.all()
     context = {'requisites': requisites,}
     return render(request, 'sort.html', context)
 
@@ -55,3 +57,8 @@ def start_seed(request):
     my_seed()
     return render(request, 'seed_response.html')
 
+
+class BaseRegisterView(CreateView):
+    model = User
+    form_class = BaseRegisterForm
+    success_url = '/login/'
