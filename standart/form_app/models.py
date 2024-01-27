@@ -16,13 +16,13 @@ class Requisites(models.Model):
         verbose_name='тип платежа',
         choices=TYPE_PAID_CHOICES,
         max_length=15,
-        # default='card'     #Seeder при дефолтном значении всегда ставит его (((((
+        default='card'
     )
     type_card_payment_account = models.CharField(
         verbose_name='тип карты/счета',
         choices=TYPE_CARD_ACCOUNT_CHOICES,
         max_length=5,
-        # default='type1'    #Seeder при дефолтном значении всегда ставит его (((((
+        default='type1'
     )
     surname = models.CharField(verbose_name='фамилия', max_length=10)
     name = models.CharField(verbose_name='имя', max_length=10)
@@ -51,7 +51,7 @@ class Application(models.Model):
         verbose_name='статус',
         choices=STATUS_CHOICES,
         max_length=16,
-        default='awaiting_payment'  #Seeder при дефолтном значении всегда ставит его (((((
+        default='awaiting_payment'
     )
 
     class Meta:

@@ -16,7 +16,7 @@ status = ['Ожидает оплаты', 'Оплачена', 'Отменена']
 def my_seed():
     count_requisites = 0
     count_application = 0
-    while count_requisites < 100:
+    while count_requisites < 101:
         r_type_paid = random.choice(type_paid)
         r_type_card_payment_account = random.choice(type_card_payment_account)
         r_surname = random.choice(surname)
@@ -39,7 +39,7 @@ def my_seed():
 
     requisites = Requisites.objects.all()
 
-    while count_application < 5000:
+    while count_application < 5001:
         r_requisites = random.choice(requisites)
         r_status = random.choice(status)
         r_summ = random.randint(1000, 100000)
